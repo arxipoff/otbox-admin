@@ -1,0 +1,182 @@
+// OTHERS ====================
+.button--gold {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    height: 47px;
+    border-radius: 100px;
+    border: solid 1px #a58144;
+
+    font-size: 18px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #a58144;
+
+    cursor: pointer;
+}
+.loader {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .8;
+}
+// ===========================
+// DASHBORD MENU =============
+.dashbord--title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 36px;
+    font-weight: 500;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #333333;
+    margin: 0 140px;
+}
+.dashbord--menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 40px 0 30px 0;
+}
+.menu--item p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    color: #262a31;
+}
+.menu--item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 46px;
+    padding: 0 30px;
+    border: 1px solid #6b7485;
+    margin-right: -1px;
+    opacity: .5;
+    cursor: pointer;
+}
+.menu--item:nth-child(1) {
+    border-radius: 4px 0 0 4px;
+}
+.menu--item:nth-child(2) {
+    border-radius: 0 4px 4px 0;
+}
+.active {
+    opacity: 1;
+}
+// ===========================
+// SLIDER PAGES ==============
+.slider-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1.5;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: normal;
+    color: #555555;
+
+    p {
+        margin-bottom: 30px;
+    }
+    .button--gold {
+        margin: 40px 0;
+    }
+}
+.slider-two svg {
+    margin-top: 40px;
+}
+.slider-page--form {
+    width: 100%;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    #wifiPasswordLabel {
+        margin-top: 20px;
+    }
+}
+.slider-page--form label {
+    margin-bottom: 5px;
+}
+.slider-page--form label,
+.slider-page--form input  {
+    display: block;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.43;
+    color: #555555;
+
+    -webkit-box-shadow: inset 0 0 0 50px #fff;
+    -webkit-text-fill-color: #555555;
+}
+.slider-page--form input {
+    padding: 8px  10px;
+    border-radius: 2px;
+    border: solid 1px #d8d8d8;
+}
+.slider-page--form input::placeholder {
+    font-size: 14px;
+    font-weight: 200;
+    color: #999999;
+    -webkit-text-fill-color: #999999;
+}
+.slider-page--form input:-internal-autofill-selected {
+    background-color: #ffffff;
+}
+.input-error {
+    border: solid 1px #e45c5c;
+}
+.input-error--label {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.43;
+    color: #e45c5c;
+}
+.otbox-status {
+    width: 100%;
+    max-width: 500px;
+    p {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+    span {
+        font-weight: 400;
+    }
+    .online {
+        color: #92cc88;
+    }
+    .offline {
+        color: #e45c5c;
+    }
+}
+// ===========================
+// MEDIA =====================
+@media (max-width: 600px) { 
+    
+}
+// ===========================
