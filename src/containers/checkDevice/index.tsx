@@ -20,14 +20,8 @@ const CheckDevice: React.FC = () => {
 
   const getData = () => {
     setLoader(true)
-    
-    // fetch('https://jsonplaceholder.typicode.com/todos/1')
-    //   .then(response => response.json())
-    //   .then(json => console.log(json))
-
     fetch(`http://192.168.68.79:8081/api/v1/iot_device/${macAddress}`, {
-      method: 'GET',
-      // mode: 'no-cors'
+      method: 'GET'
     })
       .then(response => {
         console.log('Request succeeded with JSON response', response)

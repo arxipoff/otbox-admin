@@ -100,7 +100,7 @@
     color: #555555;
 
     p {
-        margin-bottom: 30px;
+        margin: 0 10px 30px 10px;
     }
     .button--gold {
         margin: 40px 0;
@@ -177,6 +177,40 @@
 // ===========================
 // MEDIA =====================
 @media (max-width: 600px) { 
-    
+    .header-logo {
+        width: 100px;
+        height: 30px;
+        padding: 15px 10px;
+    }
+    .dashbord--title {
+        font-size: 24px;
+        margin: 0px 10px;
+        font-weight: 600;
+    }
+    .dashbord--menu {
+        padding: 0;
+        margin: 20px 0 20px 0;
+    }
+    .menu--item {
+        padding: 0 11px;
+        height: 40px;
+    }
+    .slider-page {
+        p {
+            font-size: 16px;
+        }
+        .button--gold {
+            margin: 30px 0;
+            height: 40px;
+        }
+    }
+    .otbox-status p {
+        flex-direction: column;
+    }
+    .slider-page--form,
+    .otbox-status,
+    .otbox-status p {
+        width: 95%;    
+    }
 }
 // ===========================

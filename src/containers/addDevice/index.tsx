@@ -28,16 +28,9 @@ const AddDevice: React.FC = () => {
   }
   
   const postData = () => {
-
-    console.log("macAddress: ", macAddress)
-    console.log("wifiName: ", wifiName)
-    console.log("wifiPassword: ", wifiPassword)
-
     setLoader(true)
-
     fetch(`http://192.168.68.79:8081/api/v1/iot_device`, {  
       method: 'POST',
-      // mode: 'no-cors',
       body: JSON.stringify({
         data: {
           mac_address: macAddress,
@@ -65,7 +58,7 @@ const AddDevice: React.FC = () => {
 
   const sliderOne = () => {
     return(
-      <div className="slider-page">
+      <div className="slider-page slider-one">
         <p>Подключите кабель 2KOM (#2 в комплекте) к LAN-порту OTBox и включите OTBox в электросеть.</p>
         <OnetrakScheme />
         <div className="button--gold" onClick={ () => setPage(1) }>Далее</div>
