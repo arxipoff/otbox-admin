@@ -38,7 +38,7 @@
 .dashbord--title {
     font-family: 'Roboto', sans-serif;
     font-size: 36px;
-    font-weight: 500;
+    font-weight: 700;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
@@ -150,7 +150,7 @@
 .slider-page--form input:-internal-autofill-selected {
     background-color: #ffffff;
 }
-.input-error {
+.slider-page--form .input-error {
     border: solid 1px #e45c5c;
 }
 .input-error--label {

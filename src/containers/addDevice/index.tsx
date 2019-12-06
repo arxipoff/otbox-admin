@@ -125,7 +125,7 @@ const AddDevice: React.FC = () => {
               ? <p className="input-error--label">MAC-номер не указан</p>
               : macAddressStatus 
                 ? <p className="input-error--label">Нет OTBox с таким MAC-номером</p>
-                : <p className="input-error--label">MAC-номер указан не корректно</p>
+                : <p className="input-error--label">MAC-номер указан некорректно</p>
           }
         </div>
         <OnetrakBox />
