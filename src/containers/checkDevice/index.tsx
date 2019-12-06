@@ -97,6 +97,7 @@ const CheckDevice: React.FC = () => {
             id="macAddress"
             value={ macAddress }
             onChange={ (e) => {
+              setMacAddressStatus(false)
               setMacAddressError(false)
               inputHandler(setMacAddress, e)
             }}
