@@ -4,7 +4,7 @@ import {
   OnetrakBox,
   LoaderSVG
 } from '../icons'
-import formatMacAddress from '../utils'
+// import formatMacAddress from '../utils'
 import '../../index.scss'
 
 
@@ -16,6 +16,7 @@ const AddDevice: React.FC = () => {
 
   let [macAddress, setMacAddress] = React.useState("")
   let [macAddressError, setMacAddressError] = React.useState(false)
+  let [macAddressStatus, setMacAddressStatus] = React.useState(false)
 
   let [wifiName, setWifiName] = React.useState("")
   let [wifiNameError, setWifiNameError] = React.useState(false)
@@ -29,7 +30,7 @@ const AddDevice: React.FC = () => {
   
   const postData = () => {
     setLoader(true)
-    fetch(`http://192.168.68.79:8081/api/v1/iot_device`, {  
+    fetch(`http://192.168.68.79:8000/api/v1/iot_device`, {  
       method: 'POST',
       body: JSON.stringify({
         data: {
@@ -41,14 +42,14 @@ const AddDevice: React.FC = () => {
       })
     })
     .then(response => {  
-      console.log('Request succeeded with JSON response', response)
+      // console.log('Request succeeded with JSON response', response)
 
       setLoader(false)
       alert("Через 3-4 минуты перейдите на вкладку «Проверить статус», чтобы проверить статус OTBox.")
       setPage(0)
     })  
     .catch(error => {  
-      console.log('Request failed', error)
+      // console.log('Request failed', error)
 
       setLoader(false)
       alert("Сервер не отвечает! Повторите поппытку позже.")
@@ -56,12 +57,45 @@ const AddDevice: React.FC = () => {
     })
   }
 
+  const checkMac = () => {
+    setLoader(true)
+    fetch(`http://192.168.68.79:8000/api/v1/iot_device_check`, {
+      method: 'POST',
+      body: JSON.stringify({
+        data: {
+          mac_address: macAddress
+        }
+      })
+    })
+      .then(response => response.json())
+      .then(res => {
+        // console.log('Request succeeded with JSON response', res)
+
+        setLoader(false)
+        if(res.iot_device_exists) setPage(2)
+        else {
+          setMacAddressError(true)
+          setMacAddressStatus(true)
+        }
+      })
+      .catch(error => {
+        // console.log('Request failed', error)
+        setLoader(false)
+      })
+  }
+
   const sliderOne = () => {
     return(
       <div className="slider-page slider-one">
         <p>Подключите кабель 2KOM (#2 в комплекте) к LAN-порту OTBox и включите OTBox в электросеть.</p>
         <OnetrakScheme />
-        <div className="button--gold" onClick={ () => setPage(1) }>Далее</div>
+        <div className="button--gold" onClick={ () =>  {
+          setMacAddress('')
+          setWifiName('')
+          setWifiPassword('')
+
+          setPage(1)
+        }}>Далее</div>
       </div>
     )
   }
@@ -78,7 +112,7 @@ const AddDevice: React.FC = () => {
             type="text" 
             name="macAddress"
             id="macAddress"
-            value={ formatMacAddress(macAddress) }
+            value={ macAddress }
             onChange={ (e) => {
               setMacAddressError(false)
               inputHandler(setMacAddress, e)
@@ -87,15 +121,17 @@ const AddDevice: React.FC = () => {
           />
           {!macAddressError ? null : 
             macAddress.length === 0 
-              ? <p className="input-error--label">MAC-номер не указан!</p>
-              : <p className="input-error--label">MAC-номер указан не корректно!</p>
+              ? <p className="input-error--label">MAC-номер не указан</p>
+              : macAddressStatus 
+                ? <p className="input-error--label">Нет OTBox с таким MAC-номером</p>
+                : <p className="input-error--label">MAC-номер указан не корректно</p>
           }
         </div>
         <OnetrakBox />
         <div className="button--gold" onClick={ () => {
 
-          if(!macAddress || formatMacAddress(macAddress).length !== 17) setMacAddressError(true)
-          else setPage(2)
+          if(!macAddress || macAddress.length !== 17) setMacAddressError(true)
+          else checkMac()
           
         }}>
           Далее
@@ -122,7 +158,7 @@ const AddDevice: React.FC = () => {
               inputHandler(setWifiName, e)
             }}
           />
-          {!wifiNameError ? null : <p className="input-error--label">Имя сети Wi-Fi не указано!</p>}
+          {!wifiNameError ? null : <p className="input-error--label">Имя сети Wi-Fi не указано</p>}
           <label id="wifiPasswordLabel" htmlFor="wifiPassword">Пароль</label>
           <input
             className={wifiPasswordError ? "input-error" : ""}
@@ -136,7 +172,7 @@ const AddDevice: React.FC = () => {
               inputHandler(setWifiPassword, e)
             }}
           />
-          {!wifiPasswordError ? null : <p className="input-error--label">Пароль сети Wi-Fi не указан!</p>}
+          {!wifiPasswordError ? null : <p className="input-error--label">Пароль сети Wi-Fi не указан</p>}
         </div>
         <div className="button--gold" onClick={() => {
           if(!wifiName) {

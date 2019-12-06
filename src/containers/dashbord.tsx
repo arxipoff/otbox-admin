@@ -36,3 +36,9 @@ const Dashbord: React.FC = () => {
   )
 }
 export default Dashbord
+
+
+
+
+// TODO: 
+//   1) вынести все fetch методы из компонентов 
