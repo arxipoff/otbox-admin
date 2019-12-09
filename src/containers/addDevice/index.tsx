@@ -4,6 +4,12 @@ import {
   OnetrakBox,
   LoaderSVG
 } from '../icons'
+import {
+  HOST_TEST,
+  PORT_TEST,
+  // HOST_PROD,
+  // PORT_PROD
+} from '../../constants'
 // import formatMacAddress from '../utils'
 import '../../index.scss'
 
@@ -30,7 +36,7 @@ const AddDevice: React.FC = () => {
   
   const postData = () => {
     setLoader(true)
-    fetch(`http://192.168.68.79:8000/api/v1/iot_device`, {  
+    fetch(`http://${HOST_TEST}:${PORT_TEST}/api/v1/iot_device`, {  
       method: 'POST',
       body: JSON.stringify({
         data: {
@@ -59,7 +65,7 @@ const AddDevice: React.FC = () => {
 
   const checkMac = () => {
     setLoader(true)
-    fetch(`http://192.168.68.79:8000/api/v1/iot_device_check`, {
+    fetch(`http://${HOST_TEST}:${PORT_TEST}/api/v1/iot_device_check`, {
       method: 'POST',
       body: JSON.stringify({
         data: {
